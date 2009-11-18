@@ -1,0 +1,11 @@
+Plugin Name: BP Hide Widgets
+Author: Aaron Edwards at uglyrobot.com (for Incsub)
+
+Folder:
+----------------------------------------------------------------------
+bp-hide-widgets
+
+Instructions:
+----------------------------------------------------------------------
+1) Unzip the bp-hide-widgets folder in /wp-content/plugins/
+2) Activate the BP Hide Widgets plugin Site-Wide on the Plugins admin page
