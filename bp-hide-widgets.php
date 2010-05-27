@@ -7,6 +7,7 @@ Description: Adds the ability to choose which Buddypress widgets should only be 
 Author: Aaron Edwards at uglyrobot.com (for Incsub)
 Author URI: http://uglyrobot.com
 Site Wide Only: true
+WDP ID: 113
 
 Copyright 2009 Incsub (http://incsub.com)
 
