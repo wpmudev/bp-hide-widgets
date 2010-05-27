@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: BP Hide Widgets
-Version: 1.0
+Version: 1.0.1
 Plugin URI: http://incsub.com
 Description: Adds the ability to choose which Buddypress widgets should only be available to the main blog. Must be activated site-wide.
 Author: Aaron Edwards at uglyrobot.com (for Incsub)
@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 add_action( 'plugins_loaded', 'bp_hide_widgets_localization' );
 add_action( 'bp_core_admin_screen_fields', 'bp_hide_widgets_admin' );
-add_action( 'widgets_init', 'bp_hide_widgets_unregister', 999999999999999 ); //for some reason it has to run way late
+add_action( 'bp_init', 'bp_hide_widgets_unregister' );
 
 //------------------------------------------------------------------------//
 
@@ -57,7 +57,7 @@ function bp_hide_widgets_localization() {
 function bp_hide_widgets_unregister() {
   global $current_site, $blog_id;
 
-  //ignore main blog - not necessarily blogid 1 with multiple sites
+  //ignore main blog - not necessarily blog_id 1 with multiple sites
   if ($current_site->blog_id == $blog_id)
     return;
   
@@ -65,7 +65,7 @@ function bp_hide_widgets_unregister() {
 
   if (is_array($bp_hide_widgets) && count($bp_hide_widgets)) {
     foreach ($bp_hide_widgets as $widget)
-      add_action('widgets_init', create_function('', 'return unregister_widget('.$widget.');') );
+      add_action('widgets_init', create_function('', 'return unregister_widget('.$widget.');'), 21 ); //run after bp
   }
 
 }
