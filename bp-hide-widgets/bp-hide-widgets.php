@@ -1,15 +1,15 @@
 <?php
 /*
 Plugin Name: BP Hide Widgets
-Version: 1.0.1
-Plugin URI: http://incsub.com
-Description: Adds the ability to choose which Buddypress widgets should only be available to the main blog. Must be activated site-wide.
+Version: 1.0.2
+Plugin URI: http://premium.wpmudev.org/project/buddypress-hide-widgets
+Description: Adds the ability to choose which Buddypress widgets should only be available to the main blog.
 Author: Aaron Edwards at uglyrobot.com (for Incsub)
 Author URI: http://uglyrobot.com
-Site Wide Only: true
+Network: true
 WDP ID: 113
 
-Copyright 2009 Incsub (http://incsub.com)
+Copyright 2009-2011 Incsub (http://incsub.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
