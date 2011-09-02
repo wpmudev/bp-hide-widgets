@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: BP Hide Widgets
-Version: 1.0.2
+Version: 1.0.3
 Plugin URI: http://premium.wpmudev.org/project/buddypress-hide-widgets
 Description: Adds the ability to choose which Buddypress widgets should only be available to the main blog.
-Author: Aaron Edwards at uglyrobot.com (for Incsub)
+Author: Aaron Edwards (Incsub)
 Author URI: http://uglyrobot.com
 Network: true
 WDP ID: 113
@@ -40,8 +40,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //------------------------------------------------------------------------//
 
 add_action( 'plugins_loaded', 'bp_hide_widgets_localization' );
-add_action( 'bp_core_admin_screen_fields', 'bp_hide_widgets_admin' );
-add_action( 'bp_init', 'bp_hide_widgets_unregister' );
+add_action( 'bp_core_admin_screen', 'bp_hide_widgets_admin' );
+add_action( 'bp_register_widgets', 'bp_hide_widgets_unregister', 20 );
 
 //------------------------------------------------------------------------//
 
@@ -56,18 +56,25 @@ function bp_hide_widgets_localization() {
 }
 
 function bp_hide_widgets_unregister() {
-  global $current_site, $blog_id;
 
-  //ignore main blog - not necessarily blog_id 1 with multiple sites
-  if ($current_site->blog_id == $blog_id)
+  //ignore main site
+  if (is_main_site())
     return;
-  
-  $bp_hide_widgets = get_site_option('bp_hide_widgets');
 
-  if (is_array($bp_hide_widgets) && count($bp_hide_widgets)) {
-    foreach ($bp_hide_widgets as $widget)
-      add_action('widgets_init', create_function('', 'return unregister_widget('.$widget.');'), 21 ); //run after bp
-  }
+  if ( bp_get_option( 'BP_Blogs_Recent_Posts_Widget', '0' ) )
+    add_action('widgets_init', create_function('', 'return unregister_widget("BP_Blogs_Recent_Posts_Widget");'), 21 ); //run after bp
+	
+	if ( bp_get_option( 'BP_Groups_Widget', '0' ) )
+    add_action('widgets_init', create_function('', 'return unregister_widget("BP_Groups_Widget");'), 21 ); //run after bp
+
+	if ( bp_get_option( 'BP_Core_Members_Widget', '0' ) )
+    add_action('widgets_init', create_function('', 'return unregister_widget("BP_Core_Members_Widget");'), 21 ); //run after bp
+
+	if ( bp_get_option( 'BP_Core_Whos_Online_Widget', '0' ) )
+    add_action('widgets_init', create_function('', 'return unregister_widget("BP_Core_Whos_Online_Widget");'), 21 ); //run after bp
+
+	if ( bp_get_option( 'BP_Core_Recently_Active_Widget', '0' ) )
+    add_action('widgets_init', create_function('', 'return unregister_widget("BP_Core_Recently_Active_Widget");'), 21 ); //run after bp
 
 }
 
@@ -78,23 +85,48 @@ function bp_hide_widgets_unregister() {
 //------------------------------------------------------------------------//
 
 function bp_hide_widgets_admin() {
-  $bp_hide_widgets = (array)get_site_option('bp_hide_widgets');
   ?>
-  <tr>
-		<th scope="row"><?php _e( 'Hide Widgets', 'bp_hide_widgets' ) ?></th>
-		<td>
-			<p><?php _e( 'Chose which buddypress widgets should only be available to the main blog.', 'bp_hide_widgets' ) ?></p>
-      
-      <input name="bp-admin[bp_hide_widgets]" value="" type="hidden" />
-			<label><input name="bp-admin[bp_hide_widgets][]" value="BP_Activity_Widget" type="checkbox" <?php echo (in_array('BP_Activity_Widget', $bp_hide_widgets)) ? 'checked="checked"' : '' ?> />&nbsp;<?php _e( 'Site Wide Activity', 'bp_hide_widgets' ) ?></label><br />
-			<label><input name="bp-admin[bp_hide_widgets][]" value="BP_Blogs_Recent_Posts_Widget" type="checkbox" <?php echo (in_array('BP_Blogs_Recent_Posts_Widget', $bp_hide_widgets)) ? 'checked="checked"' : '' ?> />&nbsp;<?php _e( 'Recent Site Wide Posts', 'bp_hide_widgets' ) ?></label><br />
-			<label><input name="bp-admin[bp_hide_widgets][]" value="BP_Groups_Widget" type="checkbox" <?php echo (in_array('BP_Groups_Widget', $bp_hide_widgets)) ? 'checked="checked"' : '' ?> />&nbsp;<?php _e( 'Groups', 'bp_hide_widgets' ) ?></label><br />
-			<label><input name="bp-admin[bp_hide_widgets][]" value="BP_Core_Welcome_Widget" type="checkbox" <?php echo (in_array('BP_Core_Welcome_Widget', $bp_hide_widgets)) ? 'checked="checked"' : '' ?> />&nbsp;<?php _e( 'Welcome', 'bp_hide_widgets' ) ?></label><br />
-			<label><input name="bp-admin[bp_hide_widgets][]" value="BP_Core_Members_Widget" type="checkbox" <?php echo (in_array('BP_Core_Members_Widget', $bp_hide_widgets)) ? 'checked="checked"' : '' ?> />&nbsp;<?php _e( 'Members', 'bp_hide_widgets' ) ?></label><br />
-			<label><input name="bp-admin[bp_hide_widgets][]" value="BP_Core_Whos_Online_Widget" type="checkbox" <?php echo (in_array('BP_Core_Whos_Online_Widget', $bp_hide_widgets)) ? 'checked="checked"' : '' ?> />&nbsp;<?php _e( 'Who\'s Online Avatars', 'bp_hide_widgets' ) ?></label><br />
-			<label><input name="bp-admin[bp_hide_widgets][]" value="BP_Core_Recently_Active_Widget" type="checkbox" <?php echo (in_array('BP_Core_Recently_Active_Widget', $bp_hide_widgets)) ? 'checked="checked"' : '' ?> />&nbsp;<?php _e( 'Recently Active Member Avatars', 'bp_hide_widgets' ) ?></label><br />
-    </td>
-	</tr>
+	<h2><?php _e( 'Hide Widgets', 'bp_hide_widgets' ) ?></h2>
+	<span class="description"><?php _e( 'Chose which BuddyPress widgets should only be available to the main site.', 'bp_hide_widgets' ) ?></span>
+	<table class="form-table">
+		<tbody>
+			<tr>
+				<th scope="row"><?php _e( 'Recent Networkwide Posts', 'bp_hide_widgets' ); ?></th>
+				<td>
+					<input type="radio" name="bp-admin[BP_Blogs_Recent_Posts_Widget]"<?php checked( bp_get_option( 'BP_Blogs_Recent_Posts_Widget', '0' ) ); ?>value="1" /> <?php _e( 'Main', 'bp_hide_widgets' ) ?> &nbsp;
+					<input type="radio" name="bp-admin[BP_Blogs_Recent_Posts_Widget]"<?php checked( !bp_get_option( 'BP_Blogs_Recent_Posts_Widget', '0' ) ); ?>value="0" /> <?php _e( 'All', 'bp_hide_widgets' ) ?>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e( 'Groups', 'bp_hide_widgets' ) ?></th>
+				<td>
+					<input type="radio" name="bp-admin[BP_Groups_Widget]"<?php checked( bp_get_option( 'BP_Groups_Widget', '0' ) ); ?>value="1" /> <?php _e( 'Main', 'bp_hide_widgets' ) ?> &nbsp;
+					<input type="radio" name="bp-admin[BP_Groups_Widget]"<?php checked( !bp_get_option( 'BP_Groups_Widget', '0' ) ); ?>value="0" /> <?php _e( 'All', 'bp_hide_widgets' ) ?>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e( 'Members', 'bp_hide_widgets' ) ?></th>
+				<td>
+					<input type="radio" name="bp-admin[BP_Core_Members_Widget]"<?php checked( bp_get_option( 'BP_Core_Members_Widget', '0' ) ); ?>value="1" /> <?php _e( 'Main', 'bp_hide_widgets' ) ?> &nbsp;
+					<input type="radio" name="bp-admin[BP_Core_Members_Widget]"<?php checked( !bp_get_option( 'BP_Core_Members_Widget', '0' ) ); ?>value="0" /> <?php _e( 'All', 'bp_hide_widgets' ) ?>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e( "Who's Online Avatars", 'bp_hide_widgets' ) ?></th>
+				<td>
+					<input type="radio" name="bp-admin[BP_Core_Whos_Online_Widget]"<?php checked( bp_get_option( 'BP_Core_Whos_Online_Widget', '0' ) ); ?>value="1" /> <?php _e( 'Main', 'bp_hide_widgets' ) ?> &nbsp;
+					<input type="radio" name="bp-admin[BP_Core_Whos_Online_Widget]"<?php checked( !bp_get_option( 'BP_Core_Whos_Online_Widget', '0' ) ); ?>value="0" /> <?php _e( 'All', 'bp_hide_widgets' ) ?>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e( 'Recently Active Member Avatars', 'bp_hide_widgets' ) ?></th>
+				<td>
+					<input type="radio" name="bp-admin[BP_Core_Recently_Active_Widget]"<?php checked( bp_get_option( 'BP_Core_Recently_Active_Widget', '0' ) ); ?>value="1" /> <?php _e( 'Main', 'bp_hide_widgets' ) ?> &nbsp;
+					<input type="radio" name="bp-admin[BP_Core_Recently_Active_Widget]"<?php checked( !bp_get_option( 'BP_Core_Recently_Active_Widget', '0' ) ); ?>value="0" /> <?php _e( 'All', 'bp_hide_widgets' ) ?>
+				</td>
+			</tr>
+		</tbody>
+	</table>
   <?php
 }
 
@@ -113,7 +145,7 @@ if ( !function_exists( 'wdp_un_check' ) ) {
   add_action( 'admin_notices', 'wdp_un_check', 5 );
   add_action( 'network_admin_notices', 'wdp_un_check', 5 );
   function wdp_un_check() {
-    if ( !class_exists( 'WPMUDEV_Update_Notifications' ) && current_user_can( 'edit_users' ) )
+    if ( !class_exists( 'WPMUDEV_Update_Notifications' ) && current_user_can( 'install_plugins' ) )
       echo '<div class="error fade"><p>' . __('Please install the latest version of <a href="http://premium.wpmudev.org/project/update-notifications/" title="Download Now &raquo;">our free Update Notifications plugin</a> which helps you stay up-to-date with the most stable, secure versions of WPMU DEV themes and plugins. <a href="http://premium.wpmudev.org/wpmu-dev/update-notifications-plugin-information/">More information &raquo;</a>', 'wpmudev') . '</a></p></div>';
   }
 }
