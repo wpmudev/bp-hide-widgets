@@ -7,9 +7,10 @@ Description: Adds the ability to choose which Buddypress widgets should only be 
 Author: Aaron Edwards (Incsub)
 Author URI: http://uglyrobot.com
 Network: true
+Textdomain: bp_hide_widgets
 WDP ID: 113
 
-Copyright 2009-2012 Incsub (http://incsub.com)
+Copyright 2009-2013 Incsub (http://incsub.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
