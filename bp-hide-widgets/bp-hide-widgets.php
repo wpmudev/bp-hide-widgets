@@ -1,16 +1,16 @@
 <?php
 /*
-Plugin Name: BP Hide Widgets
-Version: 1.0.4
-Plugin URI: http://premium.wpmudev.org/project/buddypress-hide-widgets
-Description: Adds the ability to choose which Buddypress widgets should only be available to the main blog.
+Plugin Name: BuddyPress Hide Widgets
+Version: 1.0.5
+Plugin URI: http://premium.wpmudev.org/project/buddypress-hide-widgets/
+Description: Adds the ability to choose which Buddypress widgets should only be available to the main site.
 Author: Aaron Edwards (Incsub)
 Author URI: http://uglyrobot.com
 Network: true
 Textdomain: bp_hide_widgets
 WDP ID: 113
 
-Copyright 2009-2013 Incsub (http://incsub.com)
+Copyright 2009-2014 Incsub (http://incsub.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
@@ -76,7 +76,15 @@ function bp_hide_widgets_unregister() {
 
 	if ( bp_get_option( 'BP_Core_Recently_Active_Widget', '0' ) )
     add_action('widgets_init', create_function('', 'return unregister_widget("BP_Core_Recently_Active_Widget");'), 21 ); //run after bp
+	
+	if ( bp_get_option( 'BP_Core_Friends_Widget', '0' ) )
+    add_action('widgets_init', create_function('', 'return unregister_widget("BP_Core_Friends_Widget");'), 21 ); //run after bp
 
+	if ( bp_get_option( 'BP_Core_Login_Widget', '0' ) )
+    add_action('widgets_init', create_function('', 'return unregister_widget("BP_Core_Login_Widget");'), 21 ); //run after bp
+
+	if ( bp_get_option( 'BP_Messages_Sitewide_Notices_Widget', '0' ) )
+    add_action('widgets_init', create_function('', 'return unregister_widget("BP_Messages_Sitewide_Notices_Widget");'), 21 ); //run after bp
 }
 
 //------------------------------------------------------------------------//
@@ -93,12 +101,18 @@ function bp_hide_widgets_register_settings() {
 	add_settings_field( 'BP_Core_Members_Widget', __( 'Members', 'bp_hide_widgets' ), 'bp_hide_widgets_admin3', 'buddypress', 'bp_hide_widgets' );
 	add_settings_field( 'BP_Core_Whos_Online_Widget', __( "Who's Online Avatars", 'bp_hide_widgets' ), 'bp_hide_widgets_admin4', 'buddypress', 'bp_hide_widgets' );
 	add_settings_field( 'BP_Core_Recently_Active_Widget', __( 'Recently Active Member Avatars', 'bp_hide_widgets' ), 'bp_hide_widgets_admin5', 'buddypress', 'bp_hide_widgets' );
+	add_settings_field( 'BP_Core_Friends_Widget', __( 'Friends', 'bp_hide_widgets' ), 'bp_hide_widgets_admin6', 'buddypress', 'bp_hide_widgets' );
+	add_settings_field( 'BP_Core_Login_Widget', __( 'Login', 'bp_hide_widgets' ), 'bp_hide_widgets_admin7', 'buddypress', 'bp_hide_widgets' );
+	add_settings_field( 'BP_Messages_Sitewide_Notices_Widget', __( 'Sitewide Notices', 'bp_hide_widgets' ), 'bp_hide_widgets_admin8', 'buddypress', 'bp_hide_widgets' );
 	
 	register_setting( 'buddypress', 'BP_Blogs_Recent_Posts_Widget', 'intval');
 	register_setting( 'buddypress', 'BP_Groups_Widget', 'intval');
 	register_setting( 'buddypress', 'BP_Core_Members_Widget', 'intval');
 	register_setting( 'buddypress', 'BP_Core_Whos_Online_Widget', 'intval');
 	register_setting( 'buddypress', 'BP_Core_Recently_Active_Widget', 'intval');
+	register_setting( 'buddypress', 'BP_Core_Friends_Widget', 'intval');
+	register_setting( 'buddypress', 'BP_Core_Login_Widget', 'intval');
+	register_setting( 'buddypress', 'BP_Messages_Sitewide_Notices_Widget', 'intval');
 }
 
 function bp_hide_widgets_admin_section() {
@@ -140,6 +154,26 @@ function bp_hide_widgets_admin5() {
   <?php
 }
 
+function bp_hide_widgets_admin6() {
+  ?>
+	<input type="radio" name="BP_Core_Friends_Widget"<?php checked( bp_get_option( 'BP_Core_Friends_Widget', '0' ) ); ?>value="1" /> <?php _e( 'Main', 'bp_hide_widgets' ) ?></label> &nbsp;
+	<input type="radio" name="BP_Core_Friends_Widget"<?php checked( !bp_get_option( 'BP_Core_Friends_Widget', '0' ) ); ?>value="0" /> <?php _e( 'All', 'bp_hide_widgets' ) ?></label>
+  <?php
+}
+
+function bp_hide_widgets_admin7() {
+  ?>
+	<input type="radio" name="BP_Core_Login_Widget"<?php checked( bp_get_option( 'BP_Core_Login_Widget', '0' ) ); ?>value="1" /> <?php _e( 'Main', 'bp_hide_widgets' ) ?></label> &nbsp;
+	<input type="radio" name="BP_Core_Login_Widget"<?php checked( !bp_get_option( 'BP_Core_Login_Widget', '0' ) ); ?>value="0" /> <?php _e( 'All', 'bp_hide_widgets' ) ?></label>
+  <?php
+}
+
+function bp_hide_widgets_admin8() {
+  ?>
+	<input type="radio" name="BP_Messages_Sitewide_Notices_Widget"<?php checked( bp_get_option( 'BP_Messages_Sitewide_Notices_Widget', '0' ) ); ?>value="1" /> <?php _e( 'Main', 'bp_hide_widgets' ) ?></label> &nbsp;
+	<input type="radio" name="BP_Messages_Sitewide_Notices_Widget"<?php checked( !bp_get_option( 'BP_Messages_Sitewide_Notices_Widget', '0' ) ); ?>value="0" /> <?php _e( 'All', 'bp_hide_widgets' ) ?></label>
+  <?php
+}
 
 //------------------------------------------------------------------------//
 
@@ -148,5 +182,6 @@ function bp_hide_widgets_admin5() {
 //------------------------------------------------------------------------//
 
 //load dashboard notice
+global $wpmudev_notices;
+$wpmudev_notices[] = array( 'id'=> 113,'name'=> 'BuddyPress Hide Widgets', 'screens' => array( 'settings_page_bp-settings', 'settings_page_bp-settings-network' ) );
 include_once( dirname(__FILE__) . '/dash-notice/wpmudev-dash-notification.php' );
-?>
