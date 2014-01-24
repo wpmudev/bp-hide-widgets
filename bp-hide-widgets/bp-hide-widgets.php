@@ -4,13 +4,15 @@ Plugin Name: BuddyPress Hide Widgets
 Version: 1.0.5
 Plugin URI: http://premium.wpmudev.org/project/buddypress-hide-widgets/
 Description: Adds the ability to choose which Buddypress widgets should only be available to the main site.
-Author: Aaron Edwards (Incsub)
-Author URI: http://uglyrobot.com
+Author: WPMU DEV
+Author URI: http://premium.wpmudev.org/
 Network: true
 Textdomain: bp_hide_widgets
 WDP ID: 113
 
 Copyright 2009-2014 Incsub (http://incsub.com)
+Author - Aaron Edwards
+Contributors -
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
