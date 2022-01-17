@@ -36,7 +36,7 @@ Hide and set BuddyPress widgets with precision using BuddyPress Hide Widgets.
 
 ### To Get Started:
 
-Start by reading the [Installing Plugins](https://premium.wpmudev.org/wpmu-manual/installing-regular-plugins-on-wpmu/) section in our comprehensive [WordPress and WordPress Multisite Manual](https://premium.wpmudev.org/wpmu-manual/) if you are new to WordPress. Once installed and network-activated, you'll find the settings for this plugin in your network admin under Settings > BuddyPress > Settings. 
+Start by reading the [Installing Plugins](https://wpmudev.com/docs/using-wordpress/installing-wordpress-plugins/) section in our comprehensive [WordPress and WordPress Multisite Manual](https://premium.wpmudev.org/wpmu-manual/) if you are new to WordPress. Once installed and network-activated, you'll find the settings for this plugin in your network admin under Settings > BuddyPress > Settings. 
 
 ![BuddyPress Hide Widgets Network Menu](https://premium.wpmudev.org/wp-content/uploads/2009/11/buddypress-hide-widgets-1050-menu-network.png)
 
