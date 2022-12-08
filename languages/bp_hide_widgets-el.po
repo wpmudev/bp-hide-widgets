@@ -1,0 +1,98 @@
+# Translation of BuddyPress Hide Widgets in Greek
+# This file is distributed under the same license as the BuddyPress Hide Widgets package.
+msgid ""
+msgstr ""
+"Project-Id-Version: BuddyPress Hide Widgets\n"
+"POT-Creation-Date: 2022-12-08 17:12+0200\n"
+"PO-Revision-Date: 2022-12-08 17:20+0200\n"
+"Last-Translator: Lena Stergatou <aqua6617@yahoo.com>\n"
+"Language-Team: \n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#: bp-hide-widgets.php:152
+msgid "Hide Widgets"
+msgstr "Απόκρυψη μικροεφαρμογών"
+
+#: bp-hide-widgets.php:153
+msgid "Recent Networkwide Posts"
+msgstr "Πρόσφατα άρθρα από το δίκτυο"
+
+#: bp-hide-widgets.php:154
+msgid "Groups"
+msgstr "Ομάδες"
+
+#: bp-hide-widgets.php:155
+msgid "Members"
+msgstr "Mέλη"
+
+#: bp-hide-widgets.php:156
+msgid "Who's Online Avatars"
+msgstr "Avatars Ποιος είναι συνδεδεμένος"
+
+#: bp-hide-widgets.php:157
+msgid "Recently Active Member Avatars"
+msgstr "Avatars πρόσφατα ενεργών μέλων"
+
+#: bp-hide-widgets.php:158
+msgid "Friends"
+msgstr "Φίλοι"
+
+#: bp-hide-widgets.php:159
+msgid "Login"
+msgstr "Σύνδεση"
+
+#: bp-hide-widgets.php:160
+msgid "Sitewide Notices"
+msgstr "Ειδοποιήσεις για όλους"
+
+#: bp-hide-widgets.php:181
+msgid ""
+"Choose which BuddyPress widgets should only be available to the main site."
+msgstr ""
+"Ορίστε ποιες μικροεφαρμογές του Buddypress θα είναι διαθέσιμες μόνο στον "
+"κεντρικό ιστότοπο."
+
+#: bp-hide-widgets.php:187 bp-hide-widgets.php:194 bp-hide-widgets.php:201
+#: bp-hide-widgets.php:208 bp-hide-widgets.php:215 bp-hide-widgets.php:222
+#: bp-hide-widgets.php:229 bp-hide-widgets.php:236
+msgid "Main"
+msgstr "Μόνο στον κεντρικό"
+
+#: bp-hide-widgets.php:188 bp-hide-widgets.php:195 bp-hide-widgets.php:202
+#: bp-hide-widgets.php:209 bp-hide-widgets.php:216 bp-hide-widgets.php:223
+#: bp-hide-widgets.php:230 bp-hide-widgets.php:237
+msgid "All"
+msgstr "Σε όλους"
+
+#: bp-hide-widgets.php:259
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#. Plugin Name of the plugin/theme
+msgid "BuddyPress Hide Widgets"
+msgstr "Απόκρυψη μικροεφαρμογών του Buddypress"
+
+#. Plugin URI of the plugin/theme
+msgid "http://premium.wpmudev.org/project/buddypress-hide-widgets/"
+msgstr "http://premium.wpmudev.org/project/buddypress-hide-widgets/"
+
+#. Description of the plugin/theme
+msgid ""
+"Adds the ability to choose which Buddypress widgets should only be available "
+"to the main site."
+msgstr ""
+"Σας επιτρέπει να ορίσετε ποιες μικροεφαρμογές του Buddypress θα είναι "
+"διαθέσιμες μόνο στον κεντρικό ιστότοπο."
+
+#. Author of the plugin/theme
+msgid "Aaron Edwards (Incsub)"
+msgstr "Aaron Edwards (Incsub)"
+
+#. Author URI of the plugin/theme
+msgid "http://uglyrobot.com"
+msgstr "http://uglyrobot.com"
