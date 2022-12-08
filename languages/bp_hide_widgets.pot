@@ -1,0 +1,101 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: BuddyPress Hide Widgets\n"
+"POT-Creation-Date: 2022-12-08 17:12+0200\n"
+"PO-Revision-Date: 2022-12-08 17:12+0200\n"
+"Last-Translator: Lena Stergatou <aqua6617@yahoo.com>\n"
+"Language-Team: Lena Stergatou <aqua6617@yahoo.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: bp-hide-widgets.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: bp-hide-widgets.php:152
+msgid "Hide Widgets"
+msgstr ""
+
+#: bp-hide-widgets.php:153
+msgid "Recent Networkwide Posts"
+msgstr ""
+
+#: bp-hide-widgets.php:154
+msgid "Groups"
+msgstr ""
+
+#: bp-hide-widgets.php:155
+msgid "Members"
+msgstr ""
+
+#: bp-hide-widgets.php:156
+msgid "Who's Online Avatars"
+msgstr ""
+
+#: bp-hide-widgets.php:157
+msgid "Recently Active Member Avatars"
+msgstr ""
+
+#: bp-hide-widgets.php:158
+msgid "Friends"
+msgstr ""
+
+#: bp-hide-widgets.php:159
+msgid "Login"
+msgstr ""
+
+#: bp-hide-widgets.php:160
+msgid "Sitewide Notices"
+msgstr ""
+
+#: bp-hide-widgets.php:181
+msgid ""
+"Choose which BuddyPress widgets should only be available to the main site."
+msgstr ""
+
+#: bp-hide-widgets.php:187 bp-hide-widgets.php:194 bp-hide-widgets.php:201
+#: bp-hide-widgets.php:208 bp-hide-widgets.php:215 bp-hide-widgets.php:222
+#: bp-hide-widgets.php:229 bp-hide-widgets.php:236
+msgid "Main"
+msgstr ""
+
+#: bp-hide-widgets.php:188 bp-hide-widgets.php:195 bp-hide-widgets.php:202
+#: bp-hide-widgets.php:209 bp-hide-widgets.php:216 bp-hide-widgets.php:223
+#: bp-hide-widgets.php:230 bp-hide-widgets.php:237
+msgid "All"
+msgstr ""
+
+#: bp-hide-widgets.php:259
+msgid "Settings"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "BuddyPress Hide Widgets"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://premium.wpmudev.org/project/buddypress-hide-widgets/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Adds the ability to choose which Buddypress widgets should only be available "
+"to the main site."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Aaron Edwards (Incsub)"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://uglyrobot.com"
+msgstr ""
